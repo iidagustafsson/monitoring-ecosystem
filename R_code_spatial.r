@@ -114,5 +114,71 @@ library(ggplot2)
 save the data. go to File => Save workspace => in the mapfolder Lab in C. I called it .RData
 .RData under the menu File
 
+-------------------------------------------
+2020-04-03
 
+open previsoly saved RData
+# setting the working directory : Lab
+For windows users. setwd. Than recall the desktop where we stored the folder
+setwd("C:/Lab/")
+
+
+load makes you help load previously saved data
+we are going out of R. there " needed
+load(".RData")
+
+
+ls means list. it is the list of all the models you previously you have done. it is a list of problems.
+it will show you all the data you have made so far. if everything went well. covid and meuse should appear. 
+ls()
+
+making use of the most fancy packaged for R. 
+to make beutiful graphs
+we can plot : 
+1 - data
+2- aestetic mapping
+3- gemone
+
+make use of ggplot2 packaged. 
+recall the ggplot
+library(ggplot2)
+
+into ggplot2 there is a database called mgp dataframe 
+the dataset it about cars, but make use of the plots
+the first thing to do, is to put the data into the R
+the dataset we are about to use is called mpg
+
+data(mpg)
+head(mpg)
+
+Now we see the first rows of the dataset
+
+key components: data, aes and geometry
+first always put the data. 
+data = mpg
+then the aestetic = aes
+and then virable = 
+geometry = geom_point
+ggplot(mpg,aes(x=displ,y=hwy))+geom_point()
+
+
+most of the times
+
+change from points to lines 
+ggplot(mpg,aes(x=displ,y=hwy))+geom_line()
+
+changing the geomentry. change to 
+ggplot(mpg,aes(x=displ,y=hwy))+geom_polygon()
+
+go ahead and use covid data. how to plot our covid data.
+it is already in our data set
+have a look at it
+head(covid)
+
+
+What do we want to plot?
+tell it we use covid as dataset
+then tell him what variabilites we want to use - x=longitude, y=latitude, size=cases
+size means that the size of the point will change depending on the changes in virabilites
+ggplot(covid,aes(x=lon,y=lat,size=cases))+geom_point()
 
