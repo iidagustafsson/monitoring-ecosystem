@@ -31,6 +31,13 @@ install.packages("spatstat")
 recall the packages
 library(spatstat)
 
+For windows users. setwd. Than recall the desktop where we stored the folder
+setwd("C:/Lab/")
+
+head=T means that the column header
+import the data
+covid<-read.table("covid_agg.csv",head=T)
+
 attach the dataset we want to use. which is covid
 attach(covid)
 
@@ -53,8 +60,7 @@ this is to make sure to cluster together. e.g numbers. if
 to build a density map. give it a name : d
 d<-density(covids)
 
-now we want to show the density map
-my plotting. 
+now we want to show the density map by plotting. 
 plot(d)
 
 
