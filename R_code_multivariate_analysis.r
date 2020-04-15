@@ -44,4 +44,27 @@ To see the variation, you need the variations in plot 1 and plot 2
 Plot 1 explained 50% of variation. Same for plot 2
 Component 1 explain 90% of the variation, and component 2 explain 10%
 
+2020-04-15
+Takin plots in space some where, and each plot have different species. 
+The species are differnt distribute in the plots. Count the speceis
+Use the number of individuals as corrdinates
+See correlations between species
+Multivariate analysis -taking several plots - redesign them to see them into 2D
+
+Intro - Description of the Dataset
+Based on thinking of different plots
+Matrix of 
+Tropicl Forest - Biomes. High amopunt of evaporation, rain, light
+All plants can live together. High biodiversity. 
+Broadleaf continental forest - Biome
+Coniferous forest
+Artic Thundra
+
+
+
+
+
+
+
+
 
