@@ -1,5 +1,5 @@
 **********point pattern analysis notes**********
-spatial statisics
+spatial statistics
 driving data taken from the field. build a map on these data
 
 
@@ -7,12 +7,12 @@ talking about point patter. some distribution. in terms to individuals
 most of the data is recorded in in-situ
 measurements in the field in a certain point (coordinates x and y)
 
-point patterns are used when studyin differnt population
+point patterns are used when studying different  population
 making use of how individuals make distribution in space. 
 
 density - vectorformat (x,y)
 interpolation - rasterformat (
-what is the valu of that virable
+what is the value of that variable
 diameter height
 
 today going to produce density
@@ -31,7 +31,7 @@ install.packages("spatstat")
 recall the packages
 library(spatstat)
 
-For windows users. setwd. Than recall the desktop where we stored the folder
+For windows users. setwd. Then recall the desktop where we stored the folder
 setwd("C:/Lab/")
 
 head=T means that the column header
@@ -44,7 +44,7 @@ attach(covid)
 to see the first rows in dataset
 head(covid)
 
-now we see the coorinates. and can do our plotting
+now we see the coordinates and can do our plotting
 give a name to the object that we are going to add    = covids
 then the function to build this planning point patter = ppp
 what is the name of the x variable                    =lon              
@@ -54,7 +54,7 @@ covids<-ppp(lon,lat,c(-180,180),c(-90,90))
 
 by attaching covid, you dont need to state the dollar $ symbol
 
-c = when we have a group of series of caracthers. 
+c = when we have a group of series of characters 
 this is to make sure to cluster together. e.g numbers. if
 
 to build a density map. give it a name : d
@@ -104,14 +104,14 @@ points(covids)
 plot(coastlines,add=T)
 
 lets see the ecological point. not dealing with the number of cases
-we are seeing the density of how many case in countries
-use a command that will be usefull by monitoring ecosystems
+we are seeing the density of how many cases in countries
+use a command that will be useful  by monitoring ecosystems
 changing the aspects. changing the colors of the map
 
-We are going to make an pallet. give it a namne cl
+We are going to make a pallet. give it a name cl
 We want to adress it: <-
 
-State to the software. The color range we want to switch inbetween
+State to the software. The color range we want to switch in-between
 Instead of how it is now from blue to yellow color
 
 To indicate a range. Build a cluster: (c)
@@ -157,13 +157,13 @@ points(covids)
 plot(coastlines,add=T)
   
 By doing so, it will be a less beautiful map. 
-Changing from one color into another color very abbrubt.
-The number is representing the final numer of color we are using, in the last case 5.
-By chaning into a higher number, it will make it into a smooth change. 
+Changing from one color into another color very abrupt
+The number is representing the final number of color we are using, in the last case 5.
+By changing  into a higher number, it will make it into a smooth change. 
     
   
 How to export such a map?
-We are going to make an pdf of the map.
+We are going to make a pdf of the map.
 Give it the namn covid_density
 pdf("covid_density.pdf")
   
@@ -194,5 +194,5 @@ points(covids)
 plot(coastlines,add=T)
 dev.off()
 
-pdf-files have a higher quality when you zoome in. 
+pdf-files have a higher quality when you zoom in. 
 We started with countries, cases, latitude, longitude and ended with a nice map!
