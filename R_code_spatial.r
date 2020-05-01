@@ -11,36 +11,36 @@ data(meuse)
 Look at the data - looking at some data. the first 6 rows of data
 head(meuse)
 
-we can see that the data containt some spatial data. points in space. they have coordinaates. x and y
+we can see that the data contain some spatial data. points in space. they have coordinates x and y
 
 # coordinates
 tell the dataset this is a spatial dataset. tell the dataset that the coordinates are x and y
 coordinates(meuse)=~x+y
 
-now we are going to think spatial. make functions that use spatial infromation
-the dataphrame from a spatial data to plot
+now we are going to think spatial. make functions that use spatial information
+the data frame  from a spatial data to plot
 plot(meuse) 
 
-one of the functions that are contaning in the sp packages. explain which dataset you are using. 
-and then make use of one of the virables example zinc
+one of the functions that are containing  in the sp packages. explain which dataset you are using. 
+and then make use of one of the variables  example zinc
 spplot(meuse,"zinc")
 
-for using the plot. you will se the spots in space.
+for using the plot. you will see the spots in space.
 by using the spplot, 
 
-see how the other elements/virable are related to the spatial amount
-# excercise: plot the sptaial amount of copper
+see how the other elements/variables are related to the spatial amount
+# exercise: plot the spatial  amount of copper
 spplot(meuse,"copper")
 
-change the titel of the graph. using main=
+change the title  of the graph. using main=
 spplot(meuse,"copper",main="copper concentration")
 
-we can see the cooleration. 
-where there is a higher amount of zinc, there is also an higher concentration of copper.
-this means that the river is brining this material. 
+we can see the coloration 
+where there is a higher amount of zinc, there is also a higher concentration of copper.
+this means that the river is bringing  this material. 
 
-an othjer function. tyo see the same information. but changing the size of pints, instead of color
-it is called bubble. put in the dataset, the virable we want to show in bubble
+another function. to see the same information. but changing the size of pints, instead of color
+it is called bubble. put in the dataset, the variable  we want to show in bubble
 bubble(meuse,"zinc")
 it is the same information as the previous map. but making use of the amount of the element. 
 larger bubble means a higher concentration
@@ -54,7 +54,7 @@ create a folder called Lab on desktop C
 now we should transfer this dataset into R
 
 # setting the working directory : Lab
-For windows users. setwd. Than recall the desktop where we stored the folder
+For windows users. setwd. Then recall the desktop where we stored the folder
 setwd("C:/Lab/")
 
 Give name of the dataset we want to use - covid
@@ -75,10 +75,10 @@ plot(country,cases)
 
 number of cases by each country. the highest amount of cases were in china. 
 making the name of the countries vertical, in order to see all the countries.
-labes = las. 4 differnt codes. 
+labes = las. 4 different codes. 
 
 plot(country,cases,las=0)
-nothing happened in R. making parrallel labels
+nothing happened in R. making parallel  labels
 
 try a new label. las=1
 plot(country,cases,las=1)
@@ -86,7 +86,7 @@ plot(country,cases,las=1)
 
 Try a new label. las=2
 plot(country,cases,las=2)
-=>this changes the name of the countries horisontal
+=>this changes the name of the countries horizontal
 
 Try a new label. las=3
 plot(country,cases,las=3)
@@ -102,22 +102,22 @@ it is a library that can be installed
 the main patterns that we can achieve by ggplot. 
 to make a ggplot. need 3 main components
 1. the dataset we are going to make use of (in our case - covid)
-2. aesthetic mapping (the virables we want to put in the graph) (in our case is the country + cases)
+2. aesthetic mapping (the variables  we want to put in the graph) (in our case is the country + cases)
 3. the symbol we want to show this data (e.g. points)
 
 install the packaged called ggplot2
 install.packages("ggplot2")
 
-explian to R that we want to make use of the package ggplot2
+explain  to R that we want to make use of the package ggplot2
 library(ggplot2)
 
-save the data. go to File => Save workspace => in the mapfolder Lab in C. I called it .RData
+save the data. go to File => Save workspace => in the map folder Lab in C. I called it .RData
 .RData under the menu File
 
 -------------------------------------------
 2020-04-03
 
-open previsoly saved RData
+open previously  saved RData
 # setting the working directory : Lab
 For windows users. setwd. Than recall the desktop where we stored the folder
 setwd("C:/Lab/")
@@ -133,17 +133,17 @@ it will show you all the data you have made so far. if everything went well. cov
 ls()
 
 making use of the most fancy packaged for R. 
-to make beutiful graphs
+to make beautiful graphs
 we can plot : 
 1 - data
-2- aestetic mapping
+2- aesthetic  mapping
 3- gemone
 
 make use of ggplot2 packaged. 
 recall the ggplot
 library(ggplot2)
 
-into ggplot2 there is a database called mgp dataframe 
+into ggplot2 there is a database called mgp data frame 
 the dataset it about cars, but make use of the plots
 the first thing to do, is to put the data into the R
 the dataset we are about to use is called mpg
@@ -156,8 +156,8 @@ Now we see the first rows of the dataset
 key components: data, aes and geometry
 first always put the data. 
 data = mpg
-then the aestetic = aes
-and then virable = 
+then the aesthetic  = aes
+and then virable = x and y
 geometry = geom_point
 ggplot(mpg,aes(x=displ,y=hwy))+geom_point()
 
@@ -167,7 +167,7 @@ most of the times
 change from points to lines 
 ggplot(mpg,aes(x=displ,y=hwy))+geom_line()
 
-changing the geomentry. change to 
+changing the geometry change to polygon
 ggplot(mpg,aes(x=displ,y=hwy))+geom_polygon()
 
 go ahead and use covid data. how to plot our covid data.
@@ -178,7 +178,7 @@ head(covid)
 
 What do we want to plot?
 tell it we use covid as dataset
-then tell him what variabilites we want to use - x=longitude, y=latitude, size=cases
-size means that the size of the point will change depending on the changes in virabilites
+then tell him what variabilities  we want to use - x=longitude, y=latitude, size=cases
+size means that the size of the point will change depending on the changes in variabilities 
 ggplot(covid,aes(x=lon,y=lat,size=cases))+geom_point()
 
