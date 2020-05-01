@@ -8,7 +8,7 @@ Recall the dataset we are going to use
 library(vegan)
 
 Import the plots into R
-First give a name to the dataset we re going to use
+First give a name to the dataset we are going to use
 biomes
 
 Assign this name to a certain function
@@ -20,7 +20,7 @@ read.table
 We have a heading. Each column had a heading. The header is true
 head=T
 
-The comma is the sepertor of each plot. Telling R "if you see  comma = new column"
+The comma is the separator  of each plot. Telling R "if you see  comma = new column"
 sep=","
 
 Read the table biomes
@@ -58,7 +58,7 @@ Indicate how big the numbers/letters should be from original
 cex=1 (original) cex=1.2 (20% larger)
 plot(multivar,cex=1.2)
 
-Now we can see all the 20 dimensions (20 species) into 2 dimension
+Now we can see all the 20 dimensions (20 species) into 2 dimensions
 What can we read from the graph?
 A plot of all species
 How the species are correlated to each other
@@ -71,16 +71,16 @@ multivar
 
 Eigenvalues - the amount of perception you can have of the old system
 Originally 20 different dimensions
-Reducing everything into 2 dimension (x-axis, y-axis)
+Reducing everything into 2 dimensions (x-axis, y-axis)
 The amount of the perception we are seeing
-Subtract the % from culumn 1 + 2
+Subtract the % from column 1 + 2
 82% 
 
 The closer each species are to each other in the graph, the more related they are
 
 What are the points?
 They are the different plots
-How the different plots are scattered into 2 dimension
+How the different plots are scattered into 2 dimensions
 
 Use an additional table in lab folder. The second one we downloaded from iol
 called: biomes types
@@ -90,10 +90,10 @@ See how they are linked into the multivariate graph.
 
 plot(multivar)
 
-Read the biomes types tabel (same as we did with biomes)
+Read the biomes types table  (same as we did with biomes)
 biomes_types <-read.table("biomes_types.csv",header=T,sep=",")
 
-Link one point to each other. See if the differnt biomes can be seen into our graph
+Link one point to each other. See if the different biomes can be seen into our graph
 A function to do so is:
 
 attach this dataset
@@ -102,8 +102,7 @@ attach(biomes_types)
 Make use of the funtion. Connacting all the ellipse from the multivar
 multivar
 
-Decleare which column to use
-type
+Declare  which column to use
 
 We have four different biomes. So we are going to use four different colors
 col=1:4 or col=c("green","blue","red","black")
@@ -114,8 +113,8 @@ lwd=3
 ordiellipse(multivar,type,col=1:4,kind="ehull",lwd=3)
 
 Colors: the four different biomes
-The biomes that are comming out from.
-All species inside and a bit outside of the ellipse are species from a specific biomes
+The biomes that are coming out from.
+All species inside and a bit outside of the ellipse are species from a specific biome
 Green ellipse: tropical forest. 
 Red ellipse: broad leaf forest/temperate forest
 Blue ellipse: tundra
