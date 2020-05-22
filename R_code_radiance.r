@@ -103,9 +103,108 @@ If we make use of the stretch they are direclty integer
 This is used to ensure, that toy the different images, are storing integer values
 
 
+Regression model between faPar and NDVI
+Amount of erision in a certain area presented in kilogram per square meter
+erosion<-c(12, 14, 16, 24, 26,40, 55, 67)
+
+assigne the heavy metelas to a certain of numbers
+presented in ppm
+hm<-c(30, 100, 150, 200, 260, 340, 460, 600)
+
+lot the relatinship between the values
+change the color: col
+change the point character: pch
+x-axis as erosion 
+y-axis as heavy metals
+plot(erosion, hm, col="red", pch=19, xlab="erosion", ylab="heavy metals")
+
+lets make the model between the function
+make use of the function: lm
+Lets give a name to the model : model1
+model1<-lm(hm~erosion)
+
+We can see the summary of the model
+By using the function: summry
+And the name of the model
+summary(model1)
+
+what is the value of the R square
+These values are signifialnty related
+The pattern we observe is far away from being random
+
+Now we can put into the plot, the line between the two virables
+How to do so?
+One is a- intercept, b-slope of the curve
+If you have two virables that are exact equal to each other = the value will be 1
+
+The function is called: abline
+The line discribed by a and b (multiple the erosion)
+abline(model1)
+
+We want to make the same estimations by the faPAR and NDVI
+Go to iol site => code  => R code faPAR
+
+Set my working directory
+setwd("C:/lab/")
+
+load the library raster
+library(raster)
+
+load the faPAR10 image
+faPAR10 <- raster("faPAR10.tif")
+
+load the library rasterdiv
+library(rasterdiv)
+
+Plot the faPAR10 image
+plot(faPAR10)
+
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA), right=TRUE)
+
+We want to see how much the faPAR10 is related to the copNDVI
+
+To know how many cells are inside the faPAR10. Just put the name
+faPAR10
+
+Recall the library sf
+It is a function that select random points
+Directly select random points from a image
+
+assign it the name: pts
+the name of the image: faPAR10
+the number of pints: 1000
+pts <- random.points(faPAR10,1000)
+
+library(sf) # to call st_* functions
+random.points <- function(x,n)
+{
+lin <- rasterToContour(is.na(x))
+pol <- as(st_union(st_polygonize(st_as_sf(lin))), 'Spatial') # st_union to dissolve geometries
+pts <- spsample(pol[1,], n, type = 'random')
+}
 
 
+pts <- random.points(faPAR10,1000)
 
 
+extraction of 
+the function is called: extract
+what do we want to extract: copNDVI 
+We want to out each values on top of the point
+Every single point will have the value: pts
+assign it the name: COPNDVIp
+
+faPAR10p <- extract(faPAR10, pts, 
+
+pts <- random.points(faPAR10,1000)
+copNDVIp <- extract(copNDVI, pts)
+faPAR10p <- extract(faPAR10,pts)
 
 
+We have put the values of the NDVIp
+                    
+               pts <- random.points(faPAR10,1000)
+copNDVIp <- extract(copNDVI, pts)
+faPAR10p <- extract(faPAR10,pts)
+
+ 
