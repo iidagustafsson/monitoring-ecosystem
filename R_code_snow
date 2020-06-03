@@ -119,7 +119,7 @@ Now we have the list of the files that have the common patter
 In total 5 images
 
 Now we want to make use of the function: lapply
-And to all the files (rlist) we want to apply the function raster
+And to all the files (rlist) we want to apply the function raster over the list
 Assign it the name: import
 import<-lapply(rlist, raster)
 
@@ -145,3 +145,98 @@ Save it as a link, and save it in the Lab => Snow folder
 Then we can make a model by putting one line of code: source("")
 The name of the file: prediction.r
 source("prediction.r")
+
+-------------- 2020-06-03 ---------------
+Set my working directory
+We are going to change the traditional working directory
+This is because the data we are going to make use of in the folder called snow
+The folder snow is located in the folder lab
+setwd("C:/lab/snow/")
+
+### Exercise: import the snow cover images all together (as we did previous time)
+Firstly, we want to apply the raster function to a certain list of files
+Then we want to stack all of the images into one single image
+We assigned the name to the new file: snow.multitemp
+In order top plot the dataset we made
+We need to make a color ramp palette
+In that manner we can plot everything all together
+
+library(raster)
+library(ncdf4)
+rlist<-list.files(pattern="snow20")
+rlist
+import<-lapply(rlist, raster)
+snow.multitemp<-stack(import)
+cl<-colorRampPalette(c('darkblue','blue','light blue'))(100)
+plot(snow.multitemp, col=cl)
+
+
+Let us see the previous prediction we made
+Let us load the prediction that we saved. Alternative download the data from iol
+The data is called predicted.2025.norm
+Put the data in the snow folder inside lab
+
+Let us import the image
+In order to import images, we have to possibilites: raster or brick
+Raster import a single layer
+Brick import several bands/images all together
+
+We are just going to import one image, so we will make use of: raster() 
+The name of the raster is called: 
+Assign it the name: prediction
+prediction<-raster("predicted.2025.norm.tif")
+
+Let us plot the imported data
+Let us make us of the function: plot ()
+The name of the data: prediction
+Plot it with the previous used color ramp palette: col=cl
+plot(prediction, col=cl)
+
+By importing the snow images from the different years (2000-2020)
+we were able to calculate the correlation between the snowcoverage and the years. 
+And by doing so we can make a prediction of the snowcoverage by year 2025
+
+First of all
+Let us export the output
+We made the calculation
+And we want to send the output to a collegue
+How to export the prediction output
+The function is: writeRaster
+It is writing the entire raster object into a file as you chose
+The name of the file is: prediction
+The name of the final outcome: final.tif
+
+writeRaster(prediction,"final.tif")
+Creating the new data into the format tif. 
+Importing the data to our snow folderoutside of R
+
+Let us make a final stack
+Let us assing it the name: final.stack
+Let us make use of the function: stack
+The name of the file is called: snow.multitemp
+Give it a new name: prediction
+final.stack<-stack(snow.multitemp, prediction)
+
+Let us plot the final stack
+By using the color ramp palette
+plot(final.stack, col=cl)
+
+Let us make the data into pdf file
+Make us of the function: pdf
+Give it the name: my_final_exciting_graph.pdf
+pdf("my_final_exciting_graph.pdf")
+plot(final.stack, col=cl)
+dev.off()
+
+Using " because we are going to export something outside of R
+
+Let us make the data into png file
+Make us of the function: pnf
+Give it the name: my_final_exciting_graph.pnf
+png("my_final_exciting_graph.png")
+plot(final.stack, col=cl)
+dev.off()
+
+How to increase the resolution of the pnf image?
+Change the dimension of the pnf file
+The point per pixles
