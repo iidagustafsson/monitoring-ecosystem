@@ -81,11 +81,23 @@ Make use 1 row and 2 columns
 par(mfrow=c(1,2))
 plot(EN$EN_0001, col=cl)
 plot(EN$EN_0013, col=cl)
-In case I would face any problem 
-                              dev.off()
- What is the meaning 
-                              The computer is showing color in images in the RGB space
-                              If there are higher values in the image 13 it will become blue
-                              If there are higher values in the image 1 it will become red
+In case I would face any problem
+dev.off()
+                              
+ What is the meaning
+ first put dev.o
+ The computer is showing color in images in the RGB space
+ If there are higher values in the image 13 it will become blue
+ If there are higher values in the image 1 it will become re7
                               
                               
+ 0001 is the first image in the stack 
+ r=1
+ 0007 is middle image in the stack is 
+ g=7
+ 0013 is the last image in the stack
+ b=13
+ plotRGB(EN, r=1, g=7, b=13, stretch="lin")
+                              
+ If we have red values = high values in the first image
+ few blue spots because not so many higher values in march
