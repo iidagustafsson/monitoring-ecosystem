@@ -11,22 +11,23 @@ Recall the dataset rasterdiv and rasterVis
 library(rasterdiv)
 library(rasterVis)
 
-Attack the dataset copNDVI
+Attach the data copNDVI
 data(copNDVI)
 
 Plot the dataset
 plot(copNDVI)
 
 We can now make additional graphs on the world map
-We should remove some values by using cbind. Remove the values from the 253 to 255
+We should remove some values by using: cbind 
+We want to remove the values from the 253 to 255
 Put this data as NA value
 Reclassify the data into copNDVI
 copNDVI<-reclassify(copNDVI,cbind(253:255,NA)
 
-Levelplot is simple but powerful function
-(If we want to impress our supervisors :) )
+Levelplot is simple but powerful function to plot data
+(If we want to impress our supervisor :) )
 levelplot(copNDVI)
-Now we have plotted the biomass functions and services that we have have had during the last 30 years (from 1999)
+Now we have plotted the biomass functions and services that we have had during the last 30 years (from 1999)
 
 The graph on the right side. What does it show us?
 It shows us the DVI values of the biomass. Shows us the ecosystem services/functions. 
@@ -36,23 +37,24 @@ In the equatorial region - the rainforest = high value
 On the 30 degrees north latitude - mainly desert/savanna = low value
 
 The graph on the top side. What does it show us?
-The variabilites are much lower over the longitudes. 
-This is due to the latitudional location of the biomes
-The top graph considers high and low values all over the longitudes (=small variabilites)
+The variabilities are much lower over the longitudes. 
+This is due to the latitudinal location of the biomes
+The top graph considers high and low values all over the longitudes (=small variabilities)
 
-Lets change the grain of the images
-Lets aggregate the NDVI
+Let us change the grain of the images
+Let us aggregate the NDVI
 The function is: aggregate()
 Increase the pixle dimension by factor of 10: fact=10
-Lets give a new name to the image copNDVI10<-
+Let us give a new name to the image: copNDVI10
 copNDVI10<-aggregate(copNDVI,fact=10)
 
 The map becomes a bit smoother, because the pixels are now bigger than before 
 
-Lets see what happens when we aggregate with the factor 100 (+ changing name of the new image)
+Let us see what happens when we aggregate with the factor 100 
+And change the name of the new image into: copNDVI100
 copNDVI100<-aggregate(copNDVI,fact=100)
 
-The map becomes now very blurry, because the pixles are now very big. Cannot see much details 
+The map becomes now very blurry, because the pixels are now very big. Cannot see much details 
 Fun fact: Most of climate change maps are made by this resolution
 
 #########################################################
@@ -72,7 +74,7 @@ labs(x="Longitude",y="Latitude", fill="")+
 #########################################################
 
 Move to another example 
-See how much the plants are loosing their chemical cycling and energy flow, due to human activities
+See how much the plants are losing their chemical cycling and energy flow, due to human activities
 See how much we have converted the previous forest into agricultural lands
 
 Download the data defor1_ and defor2_ images from iol
@@ -87,18 +89,18 @@ Recall the raster packages
 library(raster)
 
 Import the data we saved in lab folder (defor1_ + defor2_)
-The funkction to import images into R is called : brick
+The function to import images into R is called : brick
 Go to the lab folder - .jpg extension are the images (the extension cannot be seen in windows)
 brick("defor1_.jpg")
 Put the name of the data. Give it the name defor1
 defor1<-brick("defor1_.jpg")
 
-Now lets also brick the second raster
+Now let us also brick the second raster
 Put the name of the data. Give it the name defor2
 defor2<-brick("defor2_.jpg")
 
 Now both the images are imported
-Lets plot them into R
+Let us plot them into R
 First check the landset bands:
 
 Bands of landset 
@@ -111,18 +113,20 @@ R-red =3, G-green =2, B-blue=1
 The function is called: plotRGB
 Change the bands scheme (r=1, g=2, b=3)
 
-Stretch to see the colors, by making a liniar stretching 
+Stretch to see the colors, by making a linear stretching 
 The function is called: stretch="Lin"
 plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 What we see: our forest before the changes in land use
 
+Now do the same fow defor2
 plotRGB(defor2, r=1, g=2, b=3, stretch="Lin")
-What we see: our forest have undergone large changes in land use
+
+What we see: our forest has undergone large changes in land use
 
 Make use of the function: par
 Make a multiframe row: mfrow
-Explain the amount of rows and colums you want: 1,2
-To put the number of colums and graphs into the graph. Make a series of charachter (c)
+Explain the number of rows and columns you want: 1,2
+To put the number of columns and graphs into the graph. Make a series of character (c)
 Now we can see the images next to each other
 Par is creating a multiframe of rows. The numbers indicate: 1 row 2 columns
 par(mfrow=c(1,2))
@@ -146,7 +150,7 @@ To link the band to the image, make use of $.
 dvi1<-defor1$defor1_.1-defor1$defor1_.2
 dvi2<-defor2$defor2_.1-defor2$defor2_.2
 
-Change the color ramp palletes of the plots
+Change the color ramp palette of the plots
 Assign the color ramp pallet to the name: cl
 cl<-colorRampPalette(c("darkblue","yellow","red","black"))(100) 
 
@@ -161,7 +165,7 @@ ERROR! The raster objects have different extents.
 Shut down the specified device
 dev.off()
 
-Change the color ramp palletes of the plots
+Change the color ramp palette of the plots
 Assign the color ramp pallet to the name: cld
 cld<-colorRampPalette(c("blue","white","red"))(100) 
 plot(difdvi, col=cld)
@@ -173,7 +177,7 @@ Shows the loss of ecosystem functions/services
 All red parts have loss biomass and its services/functions
 
 Use another stretch
-Lets make us of a histogram stretch: "hist"
+Let us make us of a histogram stretch: "hist"
 This function enhances the 'noise'. 
 hist(difdvi)
 The bars show several values that are greater than 0 
