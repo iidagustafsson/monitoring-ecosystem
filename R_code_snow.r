@@ -10,8 +10,8 @@ The file is now in the Lab folder
 Let us import the file from Lab folder into R
 We need to recall some libraries: raster and ncdf4
 ncdf4 in order to import the ncd-files. 
-most copernicus data are in this form
-sometimes it is included in the raster package, but we will install the new package
+Most Copernicus data are in this form
+Sometimes it is included in the raster package, but we will install the new package
 install.packages("ncdf4")
 
 Now recall the libraries we need:
@@ -22,46 +22,44 @@ raster function = going to import one single layer
 brick function = going to import several layers
 
 Import the image
-we will make use of the function: raster()
+We will make use of the function: raster()
 Put the name of the file that should be imported
 To find the name of the file
-Go to Lab folder, and right click on properties
+Go to Lab folder, and right click on properties: 
 Assign it a new name: snowmay 
 snowmay<-raster("c_gls_SCE_202005260000_NHEMI_VIIRS_V1.0.1.nc")
 
 Warning message
 The image is covering the whole world map
-But we were only downloading a part of the whole world map (europe)
--180  top left until 180 top righ = latitude
+But we were only downloading a part of the whole world map (Europe)
+-180  top left until 180 top right = latitude
 -90 bottom left until 90 top left = longitude
 
 Now we can plot the data
-Let us make a color ramp palettet that is nice for snowcoverage : darkblue - light blue
+Let us make a color ramp palette that is nice for snow coverage : dark blue - light blue
 cl<-colorRampPalette(c('darkblue','blue','light blue'))(100)
 
 ### Exercise: To make a plot of the image with the color ramp palette
 plot(snowmay, col=cl)
 
-How to see the numbers of pixles in the image
+How to see the numbers of pixels in the image
 Just put the name of the image
 snowmay
 
+Continue next lecture
+----------------------------------------------
 
 How to apply a function to a set of data
 Go to iol site
 Download the folder called snowdata.zip
-Unzip it an put in Lab folder
+Unzip it and put in Lab folder
 
 Now we are going to play with this data
 To import all the data together
 The first thing we should do is to create a new folder in Lab called: snow
 Copy the files and put into the new folder Snow
 
-First of all
-How to import several data at once
-In a slow manner to import the set
-
-The first thing we should to is to set the correct working director
+The first thing we should do is to set the correct working director
 Since the data is in the folder called snow
 setwd("C:/lab/snow/")
 
@@ -71,14 +69,15 @@ Put the name of the file: snow2000.tif
 Assign it the name: snow2000
 snow2000<-raster("snow2000r.tif")
 
-To import all of the data
+How to import several data at once
+(In a slow manner)
 snow2000 <- raster("snow2000r.tif")
 snow2005 <- raster("snow2005r.tif")
 snow2010 <- raster("snow2010r.tif")
 snow2015 <- raster("snow2015r.tif")
 snow2020 <- raster("snow2020r.tif")
 
-To plot all the images together
+To plot all the images together with the color ramp palette we created last time
 We will make use of the function: par()
 multiframe row: mfrow=
 series of number: c()
@@ -102,7 +101,7 @@ What function do we want to apply: raster
 That is the function we use to import single layers
 But we will apply the function 
 
-First of all make a list of the files we want to import
+First of all, make a list of the files we want to import
 The function we will use is: list.files()
 It will make list of the files in a certain place
 We need to state the pattern we want them to be listed
@@ -124,7 +123,7 @@ Assign it the name: import
 import<-lapply(rlist, raster)
 
 Now we can make a sort of stack of the images
-So it looks like a satallite image
+So it looks like a satellite image
 So the images became set together
 
 Make use of the function: stack()
@@ -146,6 +145,7 @@ Then we can make a model by putting one line of code: source("")
 The name of the file: prediction.r
 source("prediction.r")
 
+#((I had some problems with importing my files, so I could not make the prediction. So I only took notes from this lecture. Professor helped me after the lecture))
 -------------- 2020-06-03 ---------------
 Set my working directory
 We are going to change the traditional working directory
@@ -157,7 +157,7 @@ setwd("C:/lab/snow/")
 Firstly, we want to apply the raster function to a certain list of files
 Then we want to stack all of the images into one single image
 We assigned the name to the new file: snow.multitemp
-In order top plot the dataset we made
+In order to plot the dataset we made
 We need to make a color ramp palette
 In that manner we can plot everything all together
 
@@ -170,14 +170,13 @@ snow.multitemp<-stack(import)
 cl<-colorRampPalette(c('darkblue','blue','light blue'))(100)
 plot(snow.multitemp, col=cl)
 
-
 Let us see the previous prediction we made
 Let us load the prediction that we saved. Alternative download the data from iol
 The data is called predicted.2025.norm
 Put the data in the snow folder inside lab
 
 Let us import the image
-In order to import images, we have to possibilites: raster or brick
+In order to import images, we have two possibilities: raster or brick
 Raster import a single layer
 Brick import several bands/images all together
 
@@ -193,13 +192,13 @@ Plot it with the previous used color ramp palette: col=cl
 plot(prediction, col=cl)
 
 By importing the snow images from the different years (2000-2020)
-we were able to calculate the correlation between the snowcoverage and the years. 
-And by doing so we can make a prediction of the snowcoverage by year 2025
+We were able to calculate the correlation between the snow coverage and the years. 
+And by doing so we can make a prediction of the snow coverage by year 2025
 
 First of all
 Let us export the output
 We made the calculation
-And we want to send the output to a collegue
+And we want to send the output to a college
 How to export the prediction output
 The function is: writeRaster
 It is writing the entire raster object into a file as you chose
@@ -208,10 +207,10 @@ The name of the final outcome: final.tif
 
 writeRaster(prediction,"final.tif")
 Creating the new data into the format tif. 
-Importing the data to our snow folderoutside of R
+Importing the data to our snow folder outside of R
 
 Let us make a final stack
-Let us assing it the name: final.stack
+Let us assign it the name: final.stack
 Let us make use of the function: stack
 The name of the file is called: snow.multitemp
 Give it a new name: prediction
@@ -239,4 +238,4 @@ dev.off()
 
 How to increase the resolution of the pnf image?
 Change the dimension of the pnf file
-The point per pixles
+The point per pixels
