@@ -1,4 +1,3 @@
-How to measure the diversity
 Download the image from iol: sentinel
 Save the image in the Lab folder
 
@@ -89,6 +88,8 @@ plot(sntpca$map)
 
 Plot the RGB image
 plotRGB(sntpca$map, 1, 2, 3, stretch="lin")
+
+############## BIODIVERSITY MEASUREMENT ###################
 
 Explain to the software we are going to make use of moving window
 By making use of the function: matrix
