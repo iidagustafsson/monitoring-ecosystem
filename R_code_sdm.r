@@ -1,4 +1,4 @@
-Install the package: for Species distribution measurments = sdm
+Install the package: for Species Distribution Modelling = sdm
 install.packages("sdm")
 
 Recall the package
