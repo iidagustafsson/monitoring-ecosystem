@@ -1,4 +1,4 @@
-###############R code for remote sensing data analysis##################
+###############R code for remote sensing data analysis - DVI ##################
 
 First, we need to install two new packages
 install.packages("raster")
