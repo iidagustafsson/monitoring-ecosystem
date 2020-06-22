@@ -20,7 +20,7 @@ Import the data: c_gls_SCE500_202005180000_CEURO_MODIS_V1.0.1.nc
 Assign the imported data the name: snow
 Use the library: raster
 Make use the " ", since we are going outside of R to import the data into R
-snow<-raster("c_gls_SCE500_202005180000_CEURO_MODIS_V1.0.1.nc")
+snow<-raster("c_gls_SCE_202005260000_NHEMI_VIIRS_V1.0.1.nc")
 
 Let us make a color ramp palette: ranging from dark blue to light blue
 Assign the color ramp palette the name: cl
