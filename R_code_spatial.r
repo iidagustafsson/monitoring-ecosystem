@@ -20,7 +20,7 @@ Tell the dataset this is a spatial dataset
 Tell the dataset that the coordinates are x and y
 coordinates(meuse)=~x+y
 
-Now we are going to think spatial. 
+Now we are going to think spatially 
 Make functions that use spatial information
 The data frame from a spatial data to plot
 One of the functions in sp package to make use of: spplot()
@@ -39,8 +39,8 @@ Use the " " because we go outside of R
 spplot(meuse,"copper",main="copper concentration")
 
 We can see the correlation between zinc and copper 
-Where there is a higher amount of zinc, there is also a higher concentration of copper.
-This means that the river is bringing this material. 
+Where there is a higher amount of zinc, there is also a higher concentration of copper
+This means that the river is bringing this material 
 
 Another function - to see the same information 
 But see the concentration of the variable with respect to the size of the points 
@@ -58,9 +58,9 @@ bubble(meuse,"copper",col="red",main="Copper Concentration")
 
 # Importing new data. 
 Making use of the file covid.agg
-Download covid.agg from iol. 
+Download covid.agg from iol 
 Create a folder called Lab on desktop C
-now we should transfer this dataset into R
+Now we should transfer this dataset into R
 
 # setting the working directory to  Lab folder
 For windows users. setwd. Then recall the desktop where we stored the folder
@@ -68,13 +68,13 @@ setwd("C:/Lab/")
 
 Assign a name to the dataset we want to use: covid
 Link the name to the functions. Linking the function to an object:t <-
-Dataset will be called covid. 
-What is the name of the table we are going to read?
+Dataset will be called covid 
+What is the name of the table we are going to read
 Check the fully name of the file we downloaded: covid_agg.csv
 Make use of “ “ since we are going outside of R
 We are going to read the table. Make use of the function: read.table
 Previously we have told R to make use of the file in folder Lab
-The first row in the dataset is just a heading. 
+The first row in the dataset is just a heading 
 We need to tell R this, by putting head= T (true)
 covid<-read.table("covid_agg.csv",head=T)
 
@@ -85,7 +85,7 @@ make a plot of country and cases: plot()
 X-axis = country, and Y-axis = cases: country, cases
 plot(country,cases)
 
-Number of cases by each country - the highest amount of cases was in China. 
+Number of cases by each country - the highest amount of cases was in China 
 Making the name of the countries vertical, in order to see all the countries under the plot
 To make labels make use of the function to do so is: las=  (there are 4 different options 0, 1, 2, 3)
 
@@ -110,9 +110,9 @@ This is to see all the countries
 plot(country,cases,las=3,cex.axis=0.5)
 
 Let us plot the dataset spatially
-Make us of the ggplot2 - make beautiful graphs. 
-The main patterns that we can achieve by ggplot. 
-to make a ggplot. need 3 main components
+Make us of the ggplot2 - make beautiful graphs 
+The main patterns that we can achieve by ggplot 
+To make a ggplot: need 3 main components
 1. the dataset we are going to make use of (in our case - covid)
 2. aesthetic mapping (the variables we want to put in the graph) (in our case is the country + cases)
 3. the symbol we want to show this data (e.g. points)
@@ -131,8 +131,7 @@ Go to File => Save workspace => in the map folder Lab in C. I called it .RData
 2020-04-03
 
 Open previously saved RData
-# setting the working directory to Lab folder: Lab
-For windows users. setwd. Then recall the desktop where we stored the folder
+Set my working directory
 setwd("C:/Lab/")
 
 To load the previous saved data. Make use of the function: load()
@@ -146,14 +145,14 @@ If everything went well, covid and meuse should appear as our data
 ls()
 
 Making use of the fanciest packaged for R. 
-to make beautiful graphs
-we can plot : 
-1 - data
+To make beautiful graphs
+We can plot : 
+1- data
 2- aesthetic mapping
 3- gemone
 
-Make use of ggplot2 packaged. 
-recall the ggplot2
+Make use of ggplot2 packaged 
+Recall the ggplot2
 library(ggplot2)
 
 Into ggplot2 there is a database called mgp data frame 
@@ -181,11 +180,10 @@ Change the geometry from lines  to polygon
 ggplot(mpg,aes(x=displ,y=hwy))+geom_polygon()
 
 Now go ahead and use our covid data
-how to plot our covid data?
+How to plot our covid data?
 It is already in our data set
 First have a look at it
 head(covid)
-
 
 What do we want to plot?
 First tell R we use covid as dataset: covid
