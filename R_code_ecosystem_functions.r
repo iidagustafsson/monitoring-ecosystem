@@ -30,7 +30,7 @@ levelplot(copNDVI)
 Now we have plotted the biomass functions and services that we have had during the last 30 years (from 1999)
 
 The graph on the right side. What does it show us?
-It shows us the DVI values of the biomass. Shows us the ecosystem services/functions. 
+It shows us the DVI values of the biomass. Shows us the ecosystem services/functions
 The main functions of Earths concerning biomass
 In the north - mainly the conifer forest = high value
 In the equatorial region - the rainforest = high value
@@ -79,6 +79,8 @@ See how much we have converted the previous forest into agricultural lands
 
 Download the data defor1_ and defor2_ images from iol
 Save them into Lab-folder
+        
+Take a look at the images:
 Everything that is red in the defor1_ image is forest
 Everything that is grey in the defor2_ image is agricultural land
 
@@ -120,7 +122,6 @@ What we see: our forest before the changes in land use
 
 Now do the same fow defor2
 plotRGB(defor2, r=1, g=2, b=3, stretch="Lin")
-
 What we see: our forest has undergone large changes in land use
 
 Make use of the function: par
@@ -178,7 +179,7 @@ All red parts have loss biomass and its services/functions
 
 Use another stretch
 Let us make us of a histogram stretch: "hist"
-This function enhances the 'noise'. 
+This function enhances the 'noise' 
 hist(difdvi)
 The bars show several values that are greater than 0 
 Meaning that there is a high loss of DVI/biomass
