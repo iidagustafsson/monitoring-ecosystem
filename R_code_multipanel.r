@@ -1,15 +1,10 @@
 ### Multipanel in R - second lecture 
 
-Install a package make use of the function: install.packages()
-State to R which package to install: GGally
-Use " " since we are going outside of R
-install.packages("GGally")
-
 We installed the package sp last time
 Now we want to ask R to make use of it 
 Therefore use the function: library() or require()
 State to R wich package to recall: sp
-No need for quates since we already installed it
+No need for " " since we already installed it
 library(sp) 
 
 Now we are going to make use of the dataset in the package sp
