@@ -80,11 +80,11 @@ par(mfrow=c(2,2))
 To see all the colors available in R
 color()
 
-We are going to plot the B1 band. 
+We are going to plot the B1 band 
 Assign the color ramp pallet to the name: clb
-clb<-colorRampPalette(c("dark blue","blue","light blue"))(100)
 Use the $ symbol to link all the bands to the images 
 The name of the band B1 = B1_sre
+clb<-colorRampPalette(c("dark blue","blue","light blue"))(100)
 plot(p224r63_2011$B1_sre,col=clb)
 
 ### Exercise - do the same for green band. Which is band B2
@@ -122,7 +122,7 @@ dev.off()
 Show a plot in red green blue plot (RGB).
 Plot an image of multi-layers
 The function is called: plotRGB()
-State which band should correspond to which layer: R-red =3, G-green =2, B-blue=1
+State which band should correspond to which layer: R-red=3, G-green=2, B-blue=1
 State to R which data to plot: p224r63_2011
 Stretch to see the colors, by making a linear stretching: stretch=”Lin”
 plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
@@ -137,7 +137,7 @@ NIR - is now set to the red color. The red color is the forest
 Pink/violet parts - related to the agricultural fields 
 White/grey parts - open areas
 
-### Exercise: plot NIR on top of the G component of the RGB
+### Exercise: plot NIR on top of the GREEN component of the RGB
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
 
 We have now simply inversed the red and the green bands
@@ -146,7 +146,7 @@ Dark green = high amount of water coming. Can measure the amount of humidity
 Pink/violet parts- related to the agricultural fields 
 White/grey parts - open areas
 
-### Exercise: plot NIR on top of the B component of the RGB
+### Exercise: plot NIR on top of the BLUE component of the RGB
 plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
 
 NIR - is now set to blue color = the forest
@@ -167,7 +167,7 @@ Load the file called remote_sensing into R
 Now load to see all the dataset we used last time
 ls()
 
-Which are: "cl" "clb" "clg" "cln" "clr" "landuse" "meuse" "p224r63_2011" "soiltype"  
+Which are: "cl" "clb" "clg" "cln" "clr" "landuse" "meuse" "p224r63_2011"   
 
 Recall the dataset raster. Raster means that the data contains of pixels
 library(raster)
@@ -202,10 +202,10 @@ plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="Lin")
 plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
 
 By using the NIR, it is the most powerful band in order to monitor ecosystems 
-Here you can see how much humans have opened up the forest. Humans have underneath the forest
+Here you can see how much humans have opened up the forest. Humans have change the forest
 Which have created problems for the people living in the forest 
 But also creating problems for animals and plants
-Creating new niches for alien species to adapt to. Will compete with the endemic species.
+Creating new niches for alien species to adapt to. Will compete with the endemic species
 
 Use another stretch
 Let us make us of a histogram stretch: stretch="hist"
@@ -216,14 +216,14 @@ par(mfrow=c(2,1))
 plotRGB(p224r63_1988,r=4,g=3,b=2,stretch="hist")
 plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="hist")
 
-The most important ecological process - evapotranspiration. 
+The most important ecological process - evapotranspiration 
 Much higher humidity in 1988, compared to 2011. 
 If there is a high amount of humidity - means the forest was more alive in 1988 compared to 2011
 
 What we want to do is comparing the vegetation index. Between the two images
 NIR is highly reflective. RED is very absorbed by chloroplasts 
 A healthy plant, has a very high reflection in NIR light while low reflection in RED light
-The difference between these indexes will give us the Vegetation Index.
+The difference between these indexes will give us the Vegetation Index
 DVI (Difference Vegetation Index) = NIR-RED
 A dying plant, has less reflection in NIR light while higher reflection of RED light
 
@@ -238,16 +238,12 @@ Seventh band B7: Medium Infra Red
 
 Let us start with the image from 2011
 Assign it the name to the index: dvi2011
-To link the band to the image, make use of $.  
+To link the band to the image, make use of $  
 dvi2011<-p224r63_2011$B4_sre-p224r63_2011$B3_sre
 Now we are subtracting RED value with the NIR value
 
 Let us use a different color ramp palette
 cl<-colorRampPalette(c("darkorchid3", "light blue","lightpink4"))(100)
-plot(dvi2011,col=cl)
-
-Try another color ramp palette
-cl<-colorRampPalette(c("darkorchid3","light blue","lightpink4"))(100) 
 plot(dvi2011,col=cl)
 
 ### Exercise- Make a DVI (Difference Vegetation Index) for 1988
@@ -262,9 +258,9 @@ The differences: dvi2011 - dvi1988
 diff<-dvi2011 - dvi1988
 plot(diff)
 
-Green parts = where the DVI changes a lot
-Brown parts = negatively affected. By random events. 
-Yellow parts = ?
+Green parts = DVI changes a lot
+Yellow parts = DVI did not change
+Brown parts = DVI was negatively affected. By random events
 
 See the effects of changing the grain
 Grain - the dimensions of the pixels
