@@ -2,7 +2,7 @@ Make use of the lab folder
 Set my working directory
 setwd("C:/lab/")
 
-Go to iol site and download the data called
+Go to iol site and download the data called: 
 biomes.csv
 biomes_types.csv
 
@@ -41,17 +41,14 @@ head(biomes)
 See how the species are related - Make the multivariate analysis
 
 We have several dimensions. But we will see the data in 2 dimensions only
-We are going to take a look at our 20 dimensions (species), but just into 2 dimensions.
+We are going to take a look at our 20 dimensions (species), but just into 2 dimensions
 
 We are going to make use of the function called: DEtrended CORrespondence ANAlysis
 Give it a name
 multivar
 
 Assign this name to the certain function
-<-
-
-Make the 
-decorana
+<-decorana
 
 And use the dataset 
 biomes
