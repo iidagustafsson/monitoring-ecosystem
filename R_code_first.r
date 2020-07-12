@@ -17,13 +17,13 @@ By simply typing:
 meuse
 
 Let us look at the first 6 rows of the dataset by using function: head()
-State to R which dataset you want to se the 6 rows of: meuse
+State to R which dataset you want to see the 6 rows of: meuse
 head(meuse)
 
 Let us plot two variables 
 Let us see if the zinc concentration is related to that of copper
+First attach the dataset, in order so we can now start with the plotting
 attach(meuse)
-= now the dataset it attached. and we can now start with the plotting.
 (can also google: R software plot function (to see all different plot functions available) (x-axis,y-axis))
 
 The first variable will be on x-axis and the second variable will be on y-axis
@@ -33,7 +33,7 @@ plot(zinc,copper)
 
 To change the color of the datapoints in the graph 
 Make use of the function: col=
-There is a need for " " because colors are numbers in R. 
+There is a need for " " because colors are numbers in R 
 But by using " " we can write the name of the color we want to use
 plot(zinc,copper,col="blue") 
 
