@@ -192,4 +192,4 @@ points(inp.psam.ppp)
 
 Rather than having a clustered effect of the points
 We will make a mean value of the clustered points
-By doing so, it will be more simple to estimate the distances betw
+By doing so, it will be more simple to estimate the distances between the points
