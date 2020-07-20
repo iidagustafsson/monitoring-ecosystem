@@ -2607,3 +2607,186 @@ By doing so, it will be more simple to estimate the distances between the points
 ######################## Eighteenth code ###################
 #############################################################
 #############################################################
+Import downloaded files from Copernicus into R
+I have created a new folder called: project
+I have put all the downloaded data into the project folder
+
+First of all set my working directory
+This is in order to be able to import the files into R
+State to R where to find the downloaded data
+setwd("C:/lab/project")
+
+In order to import the files and make the prediction I need to recall some libraries
+First, check the file type of my data: TIFF-file
+With such a file format I can use raster to import it, and since I am just interested in one single layer 
+
+Recall the package raster
+library(raster)
+library(rgdal)
+
+I have downloaded 6 images from 6 different years (-99, -03, -07, -11, -15 and -19)
+I will import all the images and give them the name corresponding to their year
+dmp stands for Dry Matter Productivity
+
+Right click on the image and go to properties to copy the full name
+Write the extension manually: .tiff
+
+I will first try to import the data in a slow manner we have learnt and then in a fast manner
+Make use of the function: raster("")
+Put the name of the file: c_gls_DMP_QL_XXXX07100000_GLOBE_VGT_V2.0.1.tiff
+Assign it the name: dmpXXXX
+dmp1999<-raster("c_gls_DMP_QL_199907100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2003<-raster("c_gls_DMP_QL_200307100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2007<-raster("c_gls_DMP_QL_200707100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2011<-raster("c_gls_DMP_QL_201107100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2015<-raster("c_gls_DMP-RT6_QL_201507100000_GLOBE_PROBAV_V2.0.1.tiff")
+dmp2019<-raster("c_gls_DMP-RT6_QL_201907100000_GLOBE_PROBAV_V2.0.1.tiff")
+
+Try to plot all the images to see if it really worked
+I will make use of the par function and create a multi frame row: mfrow
+Explain the numbers of rows and columns I want
+I want 2 rows and 3 columns: 2,3
+Make a serie of character: c()
+par(mfrow=c(2,3))
+
+Create a color ramp palette ranging from green - yellow – orange - red
+Assign it the name: cl
+cl<-colorRampPalette(c("green","yellow","orange","red"))(100)
+plot(dmp1999, col=cl)
+plot(dmp2003, col=cl)
+plot(dmp2007, col=cl)
+plot(dmp2011, col=cl)
+plot(dmp2015, col=cl)
+plot(dmp2019, col=cl)
+
+Now I will try to import the files in the fast manner we have learnt
+First, I need to create a list of all my 6 files 
+And make use of the function: list.files()
+I want the files to be imported in the order from oldest picture (-99) to the newest (-19)
+For that I need to create a pattern I want the list of files to follow: pattern=
+Check the name of the files, and see what characters they have in common: c_gls_DMP
+I will assign the name to the list: dmplist
+dmplist<-list.files(pattern="c_gls_DMP")
+
+Double check and see if it really worked by simply putting the name
+dmplist
+
+From this I can see that they have been listed in the order:
+2015, 2019, 1999, 2003, 2007 and 2011
+Which is the incorrect order. They got listed this way because R prioritized - over _
+
+I will try to do another list with the patter: c_gls_DMP_
+But I am afraid then neither of the images from 2015 and 2019 will consist in the list
+dmplist2<-list.files(pattern="c_gls_DMP_")
+dmplist2
+
+Exactly what I thought. If I create a list with that pattern 
+2015 and 2019 data will not be included in the list
+
+I will try to rename the original downloaded data from year 2015 and 2019
+Hopefully the data itself will not be affected
+To make also the data from these years follow the pattern of the list
+c_gls_DMP-RT6_QL_201507100000_GLOBE_PROBAV_V2.0.1
+	Renamed into: c_gls_DMP_QL_201507100000_GLOBE_PROBAV_V2.0.1
+c_gls_DMP-RT6_QL_201907100000_GLOBE_PROBAV_V2.0.1
+	Renamed into: c_gls_DMP_QL_201907100000_GLOBE_PROBAV_V2.0.1
+
+I will now again try to import them in the slow manner 
+Just to see so the data did not get affected by the name change
+dmp1999<-raster("c_gls_DMP_QL_199907100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2003<-raster("c_gls_DMP_QL_200307100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2007<-raster("c_gls_DMP_QL_200707100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2011<-raster("c_gls_DMP_QL_201107100000_GLOBE_VGT_V2.0.1.tiff")
+dmp2015<-raster("c_gls_DMP_QL_201507100000_GLOBE_PROBAV_V2.0.1.tiff")
+dmp2019<-raster("c_gls_DMP_QL_201907100000_GLOBE_PROBAV_V2.0.1.tiff")
+
+Plot the images next to each other
+par(mfrow=c(2,3))
+cl<-colorRampPalette(c("green","yellow","orange","red"))(100)
+
+In order to change the title above the plots
+Make use of the function: main=
+Use the " " because we go outside of R
+DMP1999<-plot(dmp1999, col=cl, main="Dry Matter Productivity 1999")
+DMP2003<-plot(dmp2003, col=cl, main="Dry Matter Productivity 2003")
+DMP2007<-plot(dmp2007, col=cl, main="Dry Matter Productivity 2007")
+DMP2011<-plot(dmp2011, col=cl, main="Dry Matter Productivity 2011")
+DMP2015<-plot(dmp2015, col=cl, main="Dry Matter Productivity 2015")
+DMP2019<-plot(dmp2019, col=cl, main="Dry Matter Productivity 2019")
+
+Now I will try again to make a list
+By using the function: list.files()
+By creating a pattern: pattern="c_gls_DMP"
+I will assign the name to the list: dmplist
+dmplist<-list.files(pattern="c_gls_DMP")
+
+Cheack so the data got listed in the order from oldest picture (-99) to the newest (-19)
+dmplist
+
+Now I have a list of the 6 images 
+They are listed in the correct order
+Ranging from 1999 – 2019
+
+Now I want to make use of the function: lapply()
+It is a useful function to perform operations on list objects
+State which data I want to apply the function on: dmplist
+Furthermore, state I want to apply raster function over the list: raster
+Assign it a new name: importdmp
+importdmp<-lapply(dmplist, raster)
+
+Now I will make a stack of the images
+This is to set all the images together, so it looks like a satellite image
+
+I will make use of the function: stack()
+State the name of the images I want to make the stack of: importdmp
+Assign it the name: dmp.multitemp
+dmp.multitemp<-stack(importdmp)
+
+Plot the images with the color ramp palette I created before
+plot(dmp.multitemp, col=cl)
+
+I need to define the extent of my images
+(since I am using the world map they should range between -180 - 180, -90 - 90)
+In order to check the min and max values
+Simply write the name 
+dmp.multitemp
+
+Xmin: -180.0045
+Xmax: 179.9955
+Ymin: -59.99554
+Ymax: 80.00446
+
+For simplicity I will define the extent to: -180, 180, -60, 80
+I will assign it the name: ext
+ext<-c(-180, 180, -90, 90)
+
+I will make use the function crop 
+To specify the parts of the images I want to use for my extension: crop()
+State to R from which data I want to make the extension: dmp.multitemp
+Make use of the extension I previously made: ext
+Assign it the name: extension
+extension<-crop(dmp.multitemp,ext)
+
+Create the time variable to be used in regression
+time<-1:nlayers(dmp.multitemp)
+
+Run the regression
+fun<-function(x) { if (is.na(x[1])){ NA } else {lm(x ~ time)$coefficients[2] }} 
+
+Calculate the prediction for year 2023
+prediction.2023<-calc(extension, fun)
+
+Plot the prediction by using the color ramp palette
+plot(prediction.2023, col=cl)
+
+Stack everything – final stack. Stack the dmp.multitemp and the prediction.2023 together
+final.stack<-stack(dmp.multitemp, prediction.2023)
+plot(final.stack, col=cl)
+
+Export the plot in R, save it into png file
+Use the png function: png("")
+Use the " since we are going to save it outside of R
+Give it the name: final_plot_dmp
+png("final_plot_dmp.png")
+plot(final.stack, col=cl)
+dev.off()
