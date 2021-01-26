@@ -1,0 +1,38 @@
+setwd("C:/lab/New")
+library(raster)
+library(ncdf4)
+icelake2017<-raster("c_gls_LIE250_201703150000_Baltic_MODIS_V1.0.1.nc")
+icelake2018<-raster("c_gls_LIE250_201803140000_Baltic_MODIS_V1.1.1.nc")
+icelake2019<-raster("c_gls_LIE250_201903140000_Baltic_MODIS_V1.1.1.nc")
+icelake2020<-raster("c_gls_LIE250_202003140000_Baltic_MODIS_V1.1.1.nc")
+par(mfrow=c(2,2))
+cl<-colorRampPalette(c("white","light blue","dark blue"))(100)
+plot(icelake2017, col=cl)
+plot(icelake2018, col=cl)
+plot(icelake2019, col=cl)
+plot(icelake2020, col=cl)
+ICELAKE2017<-plot(icelake2017, col=cl, main="Ice Lake Extension 2017")
+ICELAKE2018<-plot(icelake2018, col=cl, main="Ice Lake Extension 2018")
+ICELAKE2019<-plot(icelake2019, col=cl, main="Ice Lake Extension 2019")
+ICELAKE2020<-plot(icelake2020, col=cl, main="Ice Lake Extension 2020")
+icelakelist<-list.files(pattern="c_gls_LIE250")
+icelakelist
+importicelake<-lapply(icelakelist, raster)
+icelake.multitemp<-stack(importicelake)
+plot(icelake.multitemp, col=cl)
+icelake.multitemp
+Check:
+Xmin: 4.99625
+Xmax: 45.00125
+Ymin: 44.99875
+Ymax: 71.00375
+ext<-c(5, 45, 45, 70)
+extension<-crop(icelake.multitemp,ext)
+time<-1:nlayers(icelake.multitemp)
+fun<-function(x) { if (is.na(x[1])){ NA } else {lm(x ~ time)$coefficients[2] }} 
+plot(prediction.icelake2021, col=cl)
+final.stack<-stack(icelake.multitemp, prediction.icelake2021)
+plot(final.stack, col=cl)
+png("final_plot_icelake.png")
+plot(final.stack, col=cl)
+dev.off()
