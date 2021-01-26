@@ -1,0 +1,35 @@
+setwd("C:/lab/New")
+library(raster)
+library(ncdf4)
+lakeice2018<-raster("c_gls_LIE250_201802020000_Baltic_MODIS_V1.1.1.nc")
+lakeice2019<-raster("c_gls_LIE250_201902020000_Baltic_MODIS_V1.1.1.nc")
+lakeice2020<-raster("c_gls_LIE250_202002020000_Baltic_MODIS_V1.1.1.nc")
+par(mfrow=c(2,2))
+cl<-colorRampPalette(c("white","light blue","dark blue"))(100)
+plot(lakeice2018, col=cl)
+plot(lakeice2019, col=cl)
+plot(lakeice2020, col=cl)
+LAKEICE2018<-plot(lakeice2018, col=cl, main="Lake Ice Extension 2018")
+LAKEICE2019<-plot(lakeice2019, col=cl, main="Lake Ice Extension 2019")
+LAKEICE2020<-plot(lakeice2020, col=cl, main="Lake Ice Extension 2020")
+lakeicelist<-list.files(pattern="c_gls_LIE250")
+lakeicelist
+importlakeice<-lapply(lakeicelist, raster)
+lakeice.multitemp<-stack(importlakeice)
+plot(lakeice.multitemp, col=cl)
+lakeice.multitemp
+Check:
+Xmin: 4.99625
+Xmax: 45.00125
+Ymin: 44.99875
+Ymax: 71.00375
+ext<-c(5, 45, 45, 70)
+extension<-crop(lakeice.multitemp,ext)
+time<-1:nlayers(lakeice.multitemp)
+fun<-function(x) { if (is.na(x[1])){ NA } else {lm(x ~ time)$coefficients[2] }} 
+plot(prediction.lakeice2021, col=cl)
+final.stack.lakeice<-stack(lakeice.multitemp, prediction.lakeice2021)
+plot(final.stack.lakeice, col=cl)
+png("final_plot_lakeice.png")
+plot(final.stack.lakeice, col=cl)
+dev.off()
